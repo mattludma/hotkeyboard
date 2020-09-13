@@ -1,6 +1,6 @@
 ﻿# HotKeyboard
 A simple 
-[Autohotkey script](https://github.com/mattludma/hotkeyboard/blob/master/bin/hotkeyboard.exe)
+[Autohotkey script](https://downgit.github.io/#/home?url=https://github.com/mattludma/hotkeyboard/blob/master/bin/hotkeyboard.exe)
 that adds nifty multilingual support to your keyboard using AltGr (right Alt) key
 
 ## What is HotKeyboard
@@ -36,10 +36,10 @@ It's easier then you might think.
 ## Usage
 
 You can run the script by either running a
-[standalone executable](https://github.com/mattludma/hotkeyboard/blob/master/bin/hotkeyboard.exe)
+[standalone executable](https://downgit.github.io/#/home?url=https://github.com/mattludma/hotkeyboard/blob/master/bin/hotkeyboard.exe)
 or by installing [AutoHotkey](https://www.autohotkey.com/) scripting lnaguage
 and then running the
-[source file](https://github.com/mattludma/hotkeyboard/blob/master/src/hotkeyboard.ahk),
+[source file](https://downgit.github.io/#/home?url=https://github.com/mattludma/hotkeyboard/blob/master/src/hotkeyboard.ahk),
 which is esentially a .txt file that you can edit according to
 [AutoHothey syntax](https://www.autohotkey.com/docs/FAQ.htm#language-syntax)
 .
