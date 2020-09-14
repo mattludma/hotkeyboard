@@ -1,6 +1,6 @@
 ﻿# HotKeyboard
 A simple 
-[Autohotkey script](https://github.com/mattludma/hotkeyboard/raw/master/releases/hotkeyboar-1.0.0.zip)
+[Autohotkey script](https://github.com/mattludma/hotkeyboard/raw/master/release/hotkeyboard.zip)
 that adds nifty multilingual support to your keyboard using AltGr (right Alt) key
 
 ## What is it for
@@ -45,7 +45,7 @@ It's easier then you might think.
 ## Usage
 
 After downloading and unzipping the
-[current version](https://github.com/mattludma/hotkeyboard/raw/master/releases/hotkeyboar-1.0.0.zip)
+[current version](https://github.com/mattludma/hotkeyboard/raw/master/release/hotkeyboard.zip)
 of HotKeyboard you can either run the standalone *hotkeyboard.exe* file or you can install
 [AutoHotkey](https://www.autohotkey.com/) scripting lnaguage and then run the *hotkeyboard.ahk*
 source file (which is esentially a .txt file that you can edit according to
