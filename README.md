@@ -6,23 +6,23 @@ that adds nifty multilingual support to your keyboard using AltGr (right Alt) ke
 ## What is it for
 
 - Are you constantly switching between different keyboard layouts?
-- Are you fed up with all the typos made when you forget to check the current one?
+- Are you fed up with all the typos made when you forget to check which one is active?
 
-HotKeyboard is a script that will let you add all the missing characters to
-your one preferred keyboard layout, so you won't have to bother with switching
-layouts ever again. You can access these extra characters by holding AltGr
+HotKeyboard is a script that will add all the missing characters to your
+main keyboard layout, so you won't have to bother with switching layouts
+ever again. You can access these extra characters by holding `AltGr`
 (right Alt) key and then pressing the base key of the character.
 
-**Examples:**
+**Some examples:**
 
-| Keys combination   | Outcome  | Languages character occurs in |
-|--------------------|----------|-------------------------------|
-| AlrGr + a          | á        | Czech, Slovak                 |
-| AlrGr + Shift + a  | Á        | Czech, Slovak                 |
-| AlrGr + e          | é        | Czech, Slovak, French         |
-| AlrGr + e + e      | ě        | Czech                         |
-| AlrGr + s + s      | ß        | German                        |
-| AltGr + ?          | ¿        | Spanish                       |
+| Keys combination     | Outcome  | Languages character occurs in |
+|----------------------|----------|-------------------------------|
+| `AlrGr + a`          | á        | Czech, Slovak                 |
+| `AlrGr + Shift + a`  | Á        | Czech, Slovak                 |
+| `AlrGr + e`          | é        | Czech, Slovak, French         |
+| `AlrGr + e + e`      | ě        | Czech                         |
+| `AlrGr + s + s`      | ß        | German                        |
+| `AltGr + ?`          | ¿        | Spanish                       |
         
 Your base keyboard layout is unaffected by the script. The only ecxeption is
 the right Alt key, which will stop acting as an "Alt" key, as it will become
@@ -31,13 +31,12 @@ a new modifier key.
 This concept is similar to the "International US keyboard" that is present on
 Windows operating system but has several advantages over it:
 
-1) **It fully covers multiple latin alphabets**. You can get to different special characters by pressing the
-base key repeatedly.
-   - e.g. *AltGr + n* will give you "ň" (Slovak) but *AltGr + n + n* will give you "ñ" (Spanish)
+1) **It fully covers multiple latin alphabets**.
+   - You can get to different special characters by pressing the base key repeatedly.
+   - e.g. `AltGr + n` will give you "ň" (Slovak) but `AltGr + n + n` will give you "ñ" (Spanish)
 2) **It's adjustable to your specific needs**.
-   - You can easily modify the keyboard to your specific preferences. Just change the
-*hotkeyboard.ahk* file and run your very own version of this multilingual keyboard.
-It's easier then you might think.
+   - You can easily modify the keyboard based on your language preferences. Just change the
+   `hotkeyboard.ahk` file and create your very own version. It's easier then you might think.
 3) **It's compatibile with any base keyboard layout**.
    - Your base layout will stay the same, so your colleagues and friends won't have a hard time
    when typing on your computer (and vice versa).
