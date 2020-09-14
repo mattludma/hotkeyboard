@@ -1,66 +1,71 @@
 ﻿# HotKeyboard
 A simple 
-[Autohotkey script](https://downgit.github.io/#/home?url=https://github.com/mattludma/hotkeyboard/blob/master/bin/hotkeyboard.exe)
+[Autohotkey script](https://github.com/mattludma/hotkeyboard/raw/master/releases/hotkeyboar-1.0.0.zip)
 that adds nifty multilingual support to your keyboard using AltGr (right Alt) key
 
 ## What is HotKeyboard
 
-- Do you constantly have to switch between different keyboard layouts?
-- Are you fed up with always correcting typos you've made by using the wrong one?
+- Are you constantly switching between different keyboard layouts?
+- Are you fed up with all the typos made by using the wrong layout?
 
 HotKeyboard is a script that will let you add all the missing characters
 to your preffered keyboard layout, so you don't have to bother with switching
 layouts ever again. You can access these characters by holding right Alt
 (**a.k.a. AltGr**) key and then pressing the base key of the character.
 
-For example:
+Examples:
 
-
-- AlrGr+a = "á" (Czech/Slovak)
-- AlrGr+Shift+a = "Á" (Czech/Slovak)
-- AlrGr+a+a = "ä" (Slovak/German)
-- AltGr+? = "¿" (Spanish)
-
-Your base keyboard layout will is unaffected by the script. The only ecxeption
-in the right Alt key, which will stop acting as an "Alt" key, as it will become
-a completely new modifier key.
+| Keys combination   | Outcome  | Languages character occurs in |
+|--------------------|----------|-------------------------------|
+| AlrGr + a          | á        | Czech, Slovak                 |
+| AlrGr + Shift + a  | Á        | Czech, Slovak                 |
+| AlrGr + e          | é        | Czech, Slovak, French         |
+| AlrGr + e + e      | ě        | Czech                         |
+| AltGr + ?          | ¿        | Spanish                       |
+        
+Your base keyboard layout is unaffected by the script. The only ecxeption is
+the right Alt key, which will stop acting as an "Alt" key, as it will become
+a new modifier key.
 
 This concept is similar to the "International US keyboard" that is present on
-Windows operating system, but has two big improvements over it:
+Windows operating system, but has several advantages over it:
 
-1) You can get to more then one special characters by pressing the base key repeatedly
-   - (e.g. AltGr+e will give you "é" but **AltGr+e+e** will give you "ě")
-2) You can easily adjust the keyboard to your specific preferences. Just change the
-hotkeyboard.ahk file and you can run your very own version of this multilingual keyboard.
+1) **Full support of multiple latin alphabets**. You can get to different special characters by pressing the
+base key repeatedly.
+   - e.g. *AltGr + n* will give you "ň" (Slovak) but *AltGr + n + n* will give you "ñ" (Spanish)
+2) **It's adjustable to your specific needs**.
+   - You can easily modify the keyboard to your specific preferences. Just change the
+*hotkeyboard.ahk* file and run your very own version of this multilingual keyboard.
 It's easier then you might think.
+3) **It's compatibile with any base keyboard layout**.
+   - Your base layout will stay the same, so your colleagues and friends won't have a hard time
+   when typing on your computer (and vice versa).
 
 ## Usage
 
-You can run the script by either running a
-[standalone executable](https://downgit.github.io/#/home?url=https://github.com/mattludma/hotkeyboard/blob/master/bin/hotkeyboard.exe)
-or by installing [AutoHotkey](https://www.autohotkey.com/) scripting lnaguage
-and then running the
-[source file](https://downgit.github.io/#/home?url=https://github.com/mattludma/hotkeyboard/blob/master/src/hotkeyboard.ahk),
-which is esentially a .txt file that you can edit according to
-[AutoHothey syntax](https://www.autohotkey.com/docs/FAQ.htm#language-syntax)
-.
+After downloading and unzipping the
+[current version](https://github.com/mattludma/hotkeyboard/raw/master/releases/hotkeyboar-1.0.0.zip)
+of HotKeyboard you can either run the standalone *hotkeyboard.exe* file or you can install
+[AutoHotkey](https://www.autohotkey.com/) scripting lnaguage and then run the *hotkeyboard.ahk*
+source file (which is esentially a .txt file that you can edit according to
+[AutoHothey syntax](https://www.autohotkey.com/docs/FAQ.htm#language-syntax)).
 
-I reccomend using a standard US keyboard as the base layout, because you are most likely
-to encounter with it when typing on someone else's computer.
+I reccomend using a standard US keyboard as the base layout (especially if you are
+a programmer) and removing layouts of languages covered by HotKeyboard, so the switching
+wont bother you ever again.
 
 ## Supported languages
 
-Current Hotkeyboard is optimized for **Czech and Slovak** language
-(apart from English of course).
-
-Characters of these all languages are also included:
+- Czech
+- Slovak
+- Polish
 - French
 - German
 - Spanish
-- Polish
 
-**Feel free to participe** by adding more characters and creating versions optimised for
-different language combinations!
+Current Hotkeyboard is currently optimized for **Czech and Slovak** language
+(apart from English of course), but **feel free to participe** by creating
+versions optimised for different language combinations!
 
-You can check for more info on [github](https://github.com/mattludma/hotkeyboard)
-Scancodes for keyboard keys can be found [here](http://www.seasip.info/Misc/1227T.html)
+- You can check for more info on [github](https://github.com/mattludma/hotkeyboard).
+- Scancodes for keyboard keys can be found [here](http://www.seasip.info/Misc/1227T.html).
