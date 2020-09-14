@@ -6,11 +6,11 @@ that adds nifty multilingual support to your keyboard using AltGr (right Alt) ke
 ## What is it for
 
 - Are you constantly switching between different keyboard layouts?
-- Are you fed up with all the typos when you forget to check the current one?
+- Are you fed up with all the typos made when you forget to check the current one?
 
 HotKeyboard is a script that will let you add all the missing characters to
-your one preffered keyboard layout, so you don't have to bother with switching
-layouts ever again. You can access these characters by holding AltGr
+your one preffered keyboard layout, so you won't have to bother with switching
+layouts ever again. You can access these extra characters by holding AltGr
 (right Alt) key and then pressing the base key of the character.
 
 Examples:
@@ -44,16 +44,23 @@ It's easier then you might think.
 
 ## Usage
 
-After downloading and unzipping the
+1) Download and unzip the
 [current version](https://github.com/mattludma/hotkeyboard/raw/master/release/hotkeyboard.zip)
-of HotKeyboard you can either run the standalone *hotkeyboard.exe* file or you can install
-[AutoHotkey](https://www.autohotkey.com/) scripting lnaguage and then run the *hotkeyboard.ahk*
-source file (which is esentially a .txt file that you can edit according to
+of HotKeyboard
+2) Run the stand-alone `hotkeyboard.exe` file.
+3) If you want to run the HotKeyboard on startup, run the `enable_exe_on_startup.bat` file
+
+Alternatively you can install [AutoHotkey](https://www.autohotkey.com/) scripting
+lnaguage and then run the `hotkeyboard.ahk` source file. Use this option if you want
+to customize the keyboard (`hotkeyboard.ahk` is esentially just a text file that you
+can edit in notepad according to
 [AutoHothey syntax](https://www.autohotkey.com/docs/FAQ.htm#language-syntax)).
 
 I reccomend using a standard US keyboard as the base layout (especially if you are
 a programmer) and removing layouts of languages covered by HotKeyboard, so the switching
 wont bother you ever again.
+
+
 
 ## Supported languages
 
