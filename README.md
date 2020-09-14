@@ -15,9 +15,10 @@ layouts ever again. You can access these characters by holding right Alt
 
 For example:
 
-- AlrGr+r = "ř" (Czech)
-- AltGr+Shift+l = "Ľ" (Slovak)
-- AltGr+s = "ß" (German)
+
+- AlrGr+a = "á" (Czech/Slovak)
+- AlrGr+Shift+a = "Á" (Czech/Slovak)
+- AlrGr+a+a = "ä" (Slovak/German)
 - AltGr+? = "¿" (Spanish)
 
 Your base keyboard layout will is unaffected by the script. The only ecxeption
@@ -61,4 +62,5 @@ Characters of these all languages are also included:
 **Feel free to participe** by adding more characters and creating versions optimised for
 different language combinations!
 
-More info at https://github.com/mattludma/hotkeyboard
+You can check for more info on [github](https://github.com/mattludma/hotkeyboard)
+Scancodes for keyboard keys can be found [here](http://www.seasip.info/Misc/1227T.html)
