@@ -6,12 +6,12 @@ that adds nifty multilingual support to your keyboard using AltGr (right Alt) ke
 ## What is it for
 
 - Are you constantly switching between different keyboard layouts?
-- Are you fed up with all the typos made by using the wrong layout?
+- Are you fed up with all the typos when you forget to check the current one?
 
-HotKeyboard is a script that will let you add all the missing characters
-to your preffered keyboard layout, so you don't have to bother with switching
-layouts ever again. You can access these characters by holding right Alt
-(**a.k.a. AltGr**) key and then pressing the base key of the character.
+HotKeyboard is a script that will let you add all the missing characters to
+your one preffered keyboard layout, so you don't have to bother with switching
+layouts ever again. You can access these characters by holding AltGr
+(right Alt) key and then pressing the base key of the character.
 
 Examples:
 
