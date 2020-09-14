@@ -9,11 +9,11 @@ that adds nifty multilingual support to your keyboard using AltGr (right Alt) ke
 - Are you fed up with all the typos made when you forget to check the current one?
 
 HotKeyboard is a script that will let you add all the missing characters to
-your one preffered keyboard layout, so you won't have to bother with switching
+your one preferred keyboard layout, so you won't have to bother with switching
 layouts ever again. You can access these extra characters by holding AltGr
 (right Alt) key and then pressing the base key of the character.
 
-Examples:
+**Examples:**
 
 | Keys combination   | Outcome  | Languages character occurs in |
 |--------------------|----------|-------------------------------|
@@ -29,9 +29,9 @@ the right Alt key, which will stop acting as an "Alt" key, as it will become
 a new modifier key.
 
 This concept is similar to the "International US keyboard" that is present on
-Windows operating system, but has several advantages over it:
+Windows operating system but has several advantages over it:
 
-1) **Full support of multiple latin alphabets**. You can get to different special characters by pressing the
+1) **It fully covers multiple latin alphabets**. You can get to different special characters by pressing the
 base key repeatedly.
    - e.g. *AltGr + n* will give you "ň" (Slovak) but *AltGr + n + n* will give you "ñ" (Spanish)
 2) **It's adjustable to your specific needs**.
@@ -53,12 +53,11 @@ of HotKeyboard
 Alternatively you can install [AutoHotkey](https://www.autohotkey.com/) scripting
 lnaguage and then run the `hotkeyboard.ahk` source file. Use this option if you want
 to customize the keyboard (`hotkeyboard.ahk` is esentially just a text file that you
-can edit in notepad according to
+can edit according to
 [AutoHothey syntax](https://www.autohotkey.com/docs/FAQ.htm#language-syntax)).
 
-I reccomend using a standard US keyboard as the base layout (especially if you are
-a programmer) and removing layouts of languages covered by HotKeyboard, so the switching
-wont bother you ever again.
+I reccomend using a standard US keyboard as the base layout, especially if you are
+a programmer.
 
 
 
@@ -72,8 +71,8 @@ wont bother you ever again.
 - Spanish
 
 Hotkeyboard is currently optimized for **Czech and Slovak** language
-(apart from English of course), but **feel free to participe** by creating
-versions optimised for different language combinations!
+(apart from English of course), but **feel free to create new versions**
+optimised for different language combinations!
 
 - You can check for more info on [github](https://github.com/mattludma/hotkeyboard).
 - Scancodes for keyboard keys can be found [here](http://www.seasip.info/Misc/1227T.html).
