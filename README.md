@@ -3,7 +3,7 @@ A simple
 [Autohotkey script](https://github.com/mattludma/hotkeyboard/raw/master/releases/hotkeyboar-1.0.0.zip)
 that adds nifty multilingual support to your keyboard using AltGr (right Alt) key
 
-## What is HotKeyboard
+## What is it for
 
 - Are you constantly switching between different keyboard layouts?
 - Are you fed up with all the typos made by using the wrong layout?
@@ -21,6 +21,7 @@ Examples:
 | AlrGr + Shift + a  | Á        | Czech, Slovak                 |
 | AlrGr + e          | é        | Czech, Slovak, French         |
 | AlrGr + e + e      | ě        | Czech                         |
+| AlrGr + s + s      | ß        | German                        |
 | AltGr + ?          | ¿        | Spanish                       |
         
 Your base keyboard layout is unaffected by the script. The only ecxeption is
@@ -63,7 +64,7 @@ wont bother you ever again.
 - German
 - Spanish
 
-Current Hotkeyboard is currently optimized for **Czech and Slovak** language
+Hotkeyboard is currently optimized for **Czech and Slovak** language
 (apart from English of course), but **feel free to participe** by creating
 versions optimised for different language combinations!
 
