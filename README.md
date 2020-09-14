@@ -47,7 +47,9 @@ Windows operating system but has several advantages over it:
 [current version](https://github.com/mattludma/hotkeyboard/raw/master/release/hotkeyboard.zip)
 of HotKeyboard
 2) Run the stand-alone `hotkeyboard.exe` file.
-3) If you want to run the HotKeyboard on startup, run the `enable_exe_on_startup.bat` file
+   - A green icon indicating that the script is running should appear in your system tray.
+   - ![tray](./resources/tray.png)
+3) If you want to run the HotKeyboard on each startup, run the `enable_exe_on_startup.bat` file.
 
 Alternatively you can install [AutoHotkey](https://www.autohotkey.com/) scripting
 lnaguage and then run the `hotkeyboard.ahk` source file. Use this option if you want
