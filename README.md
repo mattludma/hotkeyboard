@@ -57,19 +57,31 @@ to customize the keyboard (`hotkeyboard.ahk` is esentially just a text file that
 can edit according to
 [AutoHothey syntax](https://www.autohotkey.com/docs/FAQ.htm#language-syntax)).
 
-I reccomend using a standard US keyboard as the base layout, especially if you are
+I recommend using a standard US keyboard as the base layout, especially if you are
 a programmer.
-
-
 
 ## Supported languages
 
+- Croatian
 - Czech
-- Slovak
-- Polish
+- Danish
+- Dutch
+- Estonian
+- English
+- Icelandic
+- Italian
+- Finnish
 - French
 - German
+- Hungarian
+- Norwegian
+- Slovak
+- Slovene
 - Spanish
+- Swedish
+- Polish
+- Portuguese
+
 
 Hotkeyboard is currently optimized for **Czech and Slovak** language
 (apart from English of course), but **feel free to create new versions**
