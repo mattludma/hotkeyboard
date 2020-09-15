@@ -132,38 +132,38 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 *SC0f::SendInput {U+0009} ; Tab-> Puts TAB character in a field instead of jumping to next field
 ; *SC10::SendInput {U+0000} ; q->
 ; *SC11::SendInput {U+0000} ; w->
-*SC12::TypeNextCharacter(["é","ě","ę","è","ê","ë"]) ; e->é{U+00e9},ě{U+011b},ę,è,ê,ë
-*SC13::TypeNextCharacter(["ř","ŕ"]) ; r->ř{U+0159},ŕ{U+0155}
-*SC14::TypeNextCharacter(["ť","þ"]) ; t->ť{U+0165},þ
-*SC15::TypeNextCharacter(["ý"]) ; y->ý {U+00fd}
-*SC16::TypeNextCharacter(["ú","ů","ù","û","ü","ű"]) ; u->ú{U+00fa},ů{U+016f},ù,û,ü
-*SC17::TypeNextCharacter(["í","ì","î","ï"]) ; i->í{U+00ed},ì,î,ï
-*SC18::TypeNextCharacter(["ó","ô","ò","ö","ő","õ","ø","œ"]) ; o->ó{U+00f3},ô{U+00f4},ò,ö,õ,ø,œ
+*SC12::TypeNextCharacter(["é","ě"]) ; e->é{U+00e9},ě{U+011b}
+*SC13::TypeNextCharacter(["ř"]) ; r->ř{U+0159}
+*SC14::TypeNextCharacter(["ť"]) ; t->ť{U+0165}
+*SC15::TypeNextCharacter(["ý"]) ; y->ý{U+00fd}
+*SC16::TypeNextCharacter(["ú","ů"]) ; u->ú{U+00fa},ů{U+016f}
+*SC17::TypeNextCharacter(["í"]) ; i->í{U+00ed}
+*SC18::TypeNextCharacter(["ó"]) ; o->ó{U+00f3}
 ; *SC19::SendInput {U+0000} ; p->
-*SC1a::TypeNextCharacter(["«"]) ; [->« {U+00ab}
-*SC1b::TypeNextCharacter(["»"]) ; ]->» {U+00bb}
+*SC1a::TypeNextCharacter(["«"]) ; [->«{U+00ab}
+*SC1b::TypeNextCharacter(["»"]) ; ]->»{U+00bb}
 
 ; *SC3a::SendInput {U+0000} ; Capslock->
-*SC1e::TypeNextCharacter(["á","ä","ą","à","â","ã","å","æ"]) ; a->á{U+00e1},ä{U+00e4},ą,à,â,ã,å,æ
-*SC1f::TypeNextCharacter(["š","ś","ß"]) ; s->š{U+0161},ś,ß{U+00df}
-*SC20::TypeNextCharacter(["ď","đ","ð"]) ; d->ď{U+010f},đ,ð
+*SC1e::TypeNextCharacter(["á"]) ; a->á{U+00e1}
+*SC1f::TypeNextCharacter(["š"]) ; s->š{U+0161}
+*SC20::TypeNextCharacter(["ď"]) ; d->ď{U+010f}
 ; *SC21::SendInput {U+0000} ; f->
 ; *SC22::SendInput {U+0000} ; g->
 ; *SC23::SendInput {U+0000} ; h->
 ; *SC24::SendInput {U+0000} ; j->
 ; *SC25::SendInput {U+0000} ; k->
-*SC26::TypeNextCharacter(["ľ","ĺ","ł"]) ; l->ĺ{U+013a},ľ{U+013e},ł
-*SC27::TypeNextCharacter(["„"]) ; ;->„ {U+201e}
-*SC28::TypeNextCharacter(["“"]) ; '->“ {U+201c}
-*SC2b::TypeNextCharacter(["”"]) ; \->” {U+201d}
+; *SC26::SendInput {U+0000} ; l->
+*SC27::TypeNextCharacter(["„"]) ; ;->„{U+201e}
+*SC28::TypeNextCharacter(["“"]) ; '->“{U+201c}
+*SC2b::TypeNextCharacter(["”"]) ; \->”{U+201d}
 ; *SC1c::SendInput {U+0000} ; Enter->
 
-*SC2c::TypeNextCharacter(["ž","ż","ź"]) ; z->ž{U+017e},ż,ź
+*SC2c::TypeNextCharacter(["ž"]) ; z->ž{U+017e}
 ; *SC2d::SendInput {U+0000} ; x->
-*SC2e::TypeNextCharacter(["č","ć","ç"]) ; c->č{U+010d},ć,ç
+*SC2e::TypeNextCharacter(["č"]) ; c->č{U+010d}
 ; *SC2f::SendInput {U+0000} ; v->
 ; *SC30::SendInput {U+0000} ; b->
-*SC31::TypeNextCharacter(["ň","ń","ñ"]) ; n->ň {U+0148},ń,ñ{U+00F1}
+*SC31::TypeNextCharacter(["ň"]) ; n->ň{U+0148}
 ; *SC32::SendInput {U+0000} ; m->
 ; *SC33::SendInput {U+0000} ; ,->
 ; *SC34::SendInput {U+0000} ; .->
@@ -222,38 +222,38 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 ; *SC0f::SendInput {U+0000} ; Tab->
 ; *SC10::SendInput {U+0000} ; Q->
 ; *SC11::SendInput {U+0000} ; W->
-*SC12::TypeNextCharacter(["É","Ě","Ę","È","Ê","Ë"]) ; E->É{U+00c9},Ě{U+011a},Ę,È,Ê,Ë
-*SC13::TypeNextCharacter(["Ř","Ŕ"]) ; R->Ř{U+0158},Ŕ{U+0154}
-*SC14::TypeNextCharacter(["Ť","Þ"]) ; T->Ť{U+0164},Þ
-*SC15::TypeNextCharacter(["Ý"]) ; Y->Ý{U+00dd}
-*SC16::TypeNextCharacter(["Ú","Ů","Ù","Û","Ü","Ű"]) ; U->Ú{U+00da},Ů{U+016e},Ù,Û,Ü,Ű
-*SC17::TypeNextCharacter(["Í","Ì","Î","Ï"]) ; I->Í{U+00cd},Î,Ï
-*SC18::TypeNextCharacter(["Ó","Ô","Ò","Ö","Ő","Õ","Ø","Œ"]) ; O->Ó{U+00d3},Ò,Ô{U+00d4},Ö,Ő,Õ,Ø,Œ
+*SC12::TypeNextCharacter(["É","Ě"]) ; E->É{U+00c9},Ě{U+011a}
+*SC13::TypeNextCharacter(["Ř"]) ; R->Ř{U+0158}
+*SC14::TypeNextCharacter(["Ť"]) ; T->Ť{U+0164}
+*SC15::TypeNextCharacter(["Ý"]) ; Y->Ý {U+00dd}
+*SC16::TypeNextCharacter(["Ú","Ů"]) ; U->Ú{U+00da},Ů{U+016e}
+*SC17::TypeNextCharacter(["Í"]) ; I->Í{U+00cd}
+*SC18::TypeNextCharacter(["Ó"]) ; O->Ó{U+00d3}
 ; *SC19::SendInput {U+0000} ; P->
 *SC1a::TypeNextCharacter(["‹"]) ; {->‹{U+2039}
 *SC1b::TypeNextCharacter(["›"]) ; }->›{U+203a}
 
 ; *SC3a::SendInput {U+0000} ; Capslock->
-*SC1e::TypeNextCharacter(["Á","Ä","Ą","À","Â","Ã","Å","Æ"]) ; A->Á{U+00c1},Ä{U+00c4},Ą,À,Â,Ã,Å,Æ
-*SC1f::TypeNextCharacter(["Š","Ś","ẞ"]) ; S->Š{U+0160},Ś,ẞ
-*SC20::TypeNextCharacter(["Ď","Đ","Ð"]) ; D->Ď{U+010e},Đ,Ð
+*SC1e::TypeNextCharacter(["Á"]) ; A->Á{U+00c1}
+*SC1f::TypeNextCharacter(["Š"]) ; S->Š{U+0160}
+*SC20::TypeNextCharacter(["Ď"]) ; D->Ď{U+010e}
 ; *SC21::SendInput {U+0000} ; F->
 ; *SC22::SendInput {U+0000} ; G->
 ; *SC23::SendInput {U+0000} ; H->
 ; *SC24::SendInput {U+0000} ; J->
 ; *SC25::SendInput {U+0000} ; K->
-*SC26::TypeNextCharacter(["Ľ","Ĺ","Ł"]) ; L->Ĺ{U+0139},Ľ{U+013d},Ł
+; *SC26::SendInput {U+0000} ; L->
 *SC27::TypeNextCharacter(["‚"]) ; :->‚{U+201a}
 *SC28::TypeNextCharacter(["‘"]) ; "->‘{U+2018}
 *SC2b::TypeNextCharacter(["’"]) ; |->’{U+2019}
 ; *SC1c::SendInput {U+0000} ; Enter->
 
-*SC2c::TypeNextCharacter(["Ž","Ż","Ź"]) ; Z->Ž{U+017d},Ż,Ź
+*SC2c::TypeNextCharacter(["Ž"]) ; Z->Ž{U+017d}
 ; *SC2d::SendInput {U+0000} ; X->
-*SC2e::TypeNextCharacter(["Č","Ć","Ç"]) ; C->Č{U+010c},Ć,Ç
+*SC2e::TypeNextCharacter(["Č"]) ; C->Č{U+010c}
 ; *SC2f::SendInput {U+0000} ; V->
 ; *SC30::SendInput {U+0000} ; B->
-*SC31::TypeNextCharacter(["Ň","Ń","Ñ"]) ; N->Ň{U+0147},Ń,Ñ{U+00D1}
+*SC31::TypeNextCharacter(["Ň"]) ; N->Ň{U+0147}
 ; *SC32::SendInput {U+0000} ; M->
 ; *SC33::SendInput {U+0000} ; <->
 ; *SC34::SendInput {U+0000} ; >->

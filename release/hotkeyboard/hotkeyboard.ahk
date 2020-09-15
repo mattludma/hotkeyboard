@@ -20,6 +20,9 @@ isRightCtrlPressed := 0
 isLeftAltPressed := 0
 isRightAltPressed := 0
 
+; workaround to prevent repeated typing when held down un US International keyboard
+#MaxHotkeysPerInterval 500
+
 
 
 ; User-defined functions
@@ -36,17 +39,20 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
     isLastCharFromDifferentSequence := 1
     indexOfLastChar := 0
     for index, value in listOfSpecialChars {
-        if (lastCharacterTypedWithAltgr == value) {
+        if (lastCharacterTypedWithAltgr = value) {
             isLastCharFromDifferentSequence := 0
             indexOfLastChar := index
         }
-    }    
-    if (isLastCharFromDifferentSequence) {
-        ; if the sequence is new, then the first character of a sequence will be typed
+    }
+    if (listOfSpecialChars.Length() < 1) {
+        ; incorrrect input data
+    }
+    if (isLastCharFromDifferentSequence or listOfSpecialChars.Length() = 1) {
+        ; first character of the sequence will be typed
         lastCharacterTypedWithAltgr := listOfSpecialChars[1]
         Send %lastCharacterTypedWithAltgr% 
     } else {
-        ; character from the same sequence gets replaced by the next character
+        ; character from the same sequence gets replaced by a next character
         indexOfNextChar := Mod(indexOfLastChar, listOfSpecialChars.Length()) + 1
         lastCharacterTypedWithAltgr := listOfSpecialChars[indexOfNextChar]
         Send {Left}{Delete} ; works better than backspace
@@ -76,13 +82,10 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 
 ; Monitoring without the "~" modifier means that all monitored key presses will be
 ; intercepted to prevent focus loss or some other unwanted alt functionality
-*RAlt::
-    lastCharacterTypedWithAltgr := 0
-    isRightAltPressed := 1
-    return
+*RAlt::isRightAltPressed := 1
 *RAlt Up::
-    lastCharacterTypedWithAltgr := 0
     isRightAltPressed := 0
+    lastCharacterTypedWithAltgr := 0
     return
 
 
@@ -122,8 +125,8 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 ; *SC09::SendInput {U+0000} ; 8->
 ; *SC0a::SendInput {U+0000} ; 9->
 ; *SC0b::SendInput {U+0000} ; 0->
-; *SC0c::SendInput {U+0000} ; -->
-; *SC0d::SendInput {U+0000} ; =->
+*SC0c::SendInput {U+2212} ; --> Minus sign - U+2212
+*SC0d::SendInput {U+2011} ; =-> Non-breaking hyphen
 ; *SC0e::SendInput {U+0000} ; Backspace->
 
 *SC0f::SendInput {U+0009} ; Tab-> Puts TAB character in a field instead of jumping to next field
@@ -135,7 +138,7 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 *SC15::TypeNextCharacter(["ý"]) ; y->ý {U+00fd}
 *SC16::TypeNextCharacter(["ú","ů","ù","û","ü","ű"]) ; u->ú{U+00fa},ů{U+016f},ù,û,ü
 *SC17::TypeNextCharacter(["í","ì","î","ï"]) ; i->í{U+00ed},ì,î,ï
-*SC18::TypeNextCharacter(["ó","ò","ô","ö","ő","õ","ø"]) ; o->ó{U+00f3},ò,ô{U+00f4},ö,õ,ø
+*SC18::TypeNextCharacter(["ó","ô","ò","ö","ő","õ","ø","œ"]) ; o->ó{U+00f3},ô{U+00f4},ò,ö,õ,ø,œ
 ; *SC19::SendInput {U+0000} ; p->
 *SC1a::TypeNextCharacter(["«"]) ; [->« {U+00ab}
 *SC1b::TypeNextCharacter(["»"]) ; ]->» {U+00bb}
@@ -143,7 +146,7 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 ; *SC3a::SendInput {U+0000} ; Capslock->
 *SC1e::TypeNextCharacter(["á","ä","ą","à","â","ã","å","æ"]) ; a->á{U+00e1},ä{U+00e4},ą,à,â,ã,å,æ
 *SC1f::TypeNextCharacter(["š","ś","ß"]) ; s->š{U+0161},ś,ß{U+00df}
-*SC20::TypeNextCharacter(["ď","đ","ð"]) ; d->ď{U+010f},đ
+*SC20::TypeNextCharacter(["ď","đ","ð"]) ; d->ď{U+010f},đ,ð
 ; *SC21::SendInput {U+0000} ; f->
 ; *SC22::SendInput {U+0000} ; g->
 ; *SC23::SendInput {U+0000} ; h->
@@ -160,7 +163,7 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 *SC2e::TypeNextCharacter(["č","ć","ç"]) ; c->č{U+010d},ć,ç
 ; *SC2f::SendInput {U+0000} ; v->
 ; *SC30::SendInput {U+0000} ; b->
-*SC31::TypeNextCharacter(["ň","ń","ñ"]) ň ; n->ň {U+0148},ń,ñ{U+00F1}
+*SC31::TypeNextCharacter(["ň","ń","ñ"]) ; n->ň {U+0148},ń,ñ{U+00F1}
 ; *SC32::SendInput {U+0000} ; m->
 ; *SC33::SendInput {U+0000} ; ,->
 ; *SC34::SendInput {U+0000} ; .->
@@ -202,8 +205,8 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 ; *SC4f::SendInput {U+0000} ; End->
 ; *SC53::SendInput {U+0000} ; Delete->
 
-*SC29::SendInput {U+00b0} ; ~->° {U+00b0}
-; *SC02::SendInput {U+0000} ; !->
+*SC29::SendInput {U+00b0} ; ~->°{U+00b0}
+*SC02::TypeNextCharacter(["¡"]) ; !->¡
 ; *SC04::SendInput {U+0000} ; #->
 *SC05::TypeNextCharacter(["€","£"]) ; $->€,£
 ; *SC06::SendInput {U+0000} ; %->
@@ -222,13 +225,13 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 *SC12::TypeNextCharacter(["É","Ě","Ę","È","Ê","Ë"]) ; E->É{U+00c9},Ě{U+011a},Ę,È,Ê,Ë
 *SC13::TypeNextCharacter(["Ř","Ŕ"]) ; R->Ř{U+0158},Ŕ{U+0154}
 *SC14::TypeNextCharacter(["Ť","Þ"]) ; T->Ť{U+0164},Þ
-*SC15::TypeNextCharacter(["Ý"]) ; Y->Ý {U+00dd}
+*SC15::TypeNextCharacter(["Ý"]) ; Y->Ý{U+00dd}
 *SC16::TypeNextCharacter(["Ú","Ů","Ù","Û","Ü","Ű"]) ; U->Ú{U+00da},Ů{U+016e},Ù,Û,Ü,Ű
 *SC17::TypeNextCharacter(["Í","Ì","Î","Ï"]) ; I->Í{U+00cd},Î,Ï
-*SC18::TypeNextCharacter(["Ó","Ò","Ô","Ö","Ő","Õ","Ø"]) ; O->Ó{U+00d3},Ò,Ô{U+00d4},Ö,Ő,Õ,Ø
+*SC18::TypeNextCharacter(["Ó","Ô","Ò","Ö","Ő","Õ","Ø","Œ"]) ; O->Ó{U+00d3},Ò,Ô{U+00d4},Ö,Ő,Õ,Ø,Œ
 ; *SC19::SendInput {U+0000} ; P->
-*SC1a::TypeNextCharacter(["‹"]) ; {->‹ {U+2039}
-*SC1b::TypeNextCharacter(["›"]) ; }->› {U+203a}
+*SC1a::TypeNextCharacter(["‹"]) ; {->‹{U+2039}
+*SC1b::TypeNextCharacter(["›"]) ; }->›{U+203a}
 
 ; *SC3a::SendInput {U+0000} ; Capslock->
 *SC1e::TypeNextCharacter(["Á","Ä","Ą","À","Â","Ã","Å","Æ"]) ; A->Á{U+00c1},Ä{U+00c4},Ą,À,Â,Ã,Å,Æ
@@ -240,17 +243,17 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 ; *SC24::SendInput {U+0000} ; J->
 ; *SC25::SendInput {U+0000} ; K->
 *SC26::TypeNextCharacter(["Ľ","Ĺ","Ł"]) ; L->Ĺ{U+0139},Ľ{U+013d},Ł
-*SC27::TypeNextCharacter(["‚"]) ; :->‚ {U+201a}
-*SC28::TypeNextCharacter(["‘"]) ; "->‘ {U+2018}
-*SC2b::TypeNextCharacter(["’"]) ; |->’ {U+2019}
+*SC27::TypeNextCharacter(["‚"]) ; :->‚{U+201a}
+*SC28::TypeNextCharacter(["‘"]) ; "->‘{U+2018}
+*SC2b::TypeNextCharacter(["’"]) ; |->’{U+2019}
 ; *SC1c::SendInput {U+0000} ; Enter->
 
-*SC2c::TypeNextCharacter(["Ž","Ż","Ź"]) Ž ; Z->Ž{U+017d},Ż,Ź
+*SC2c::TypeNextCharacter(["Ž","Ż","Ź"]) ; Z->Ž{U+017d},Ż,Ź
 ; *SC2d::SendInput {U+0000} ; X->
-*SC2e::TypeNextCharacter(["Č","Ć","Ç"])  ; C->Č{U+010c},Ć,Ç
+*SC2e::TypeNextCharacter(["Č","Ć","Ç"]) ; C->Č{U+010c},Ć,Ç
 ; *SC2f::SendInput {U+0000} ; V->
 ; *SC30::SendInput {U+0000} ; B->
-*SC31::TypeNextCharacter(["Ň","Ń","Ñ"]) Ň ; N->Ň{U+0147},Ń,Ñ{U+00D1}
+*SC31::TypeNextCharacter(["Ň","Ń","Ñ"]) ; N->Ň{U+0147},Ń,Ñ{U+00D1}
 ; *SC32::SendInput {U+0000} ; M->
 ; *SC33::SendInput {U+0000} ; <->
 ; *SC34::SendInput {U+0000} ; >->

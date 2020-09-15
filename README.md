@@ -83,10 +83,22 @@ a programmer.
 - Polish
 - Portuguese
 
+### Language alternatives
 
-Hotkeyboard is currently optimized for **Czech and Slovak** language
-(apart from English of course), but **feel free to create new versions**
-optimised for different language combinations!
+As of now, there are 4 different HotKeyboards you can choose from:
+
+| File name                       | Description              |
+|---------------------------------|--------------------------|
+| hotkeyboard_sk.ahk              | Slovak characters only.   |
+| hotkeyboard_cz.ahk              | Czech characters only.    |
+| hotkeyboard_cz+eu.ahk           | **Default**. Characters from all supported languages. Optimised for Czech. |
+| hotkeyboard_cz+eu+scripts.ahk   | Same as above but with Capslock key set to execute custom users scripts.   |
+
+The `hotkeyboard.exe` file is a compiled equivalent of a `hotkeyboard_cz+eu.ahk` file.
+
+## License
+
+**Feel free to create new versions** optimised for different language combinations!
 
 - You can check for more info on [github](https://github.com/mattludma/hotkeyboard).
 - Scancodes for keyboard keys can be found [here](http://www.seasip.info/Misc/1227T.html).

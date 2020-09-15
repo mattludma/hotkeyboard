@@ -20,8 +20,13 @@ isRightCtrlPressed := 0
 isLeftAltPressed := 0
 isRightAltPressed := 0
 
+isCapslockPressed := 0
+
 ; workaround to prevent repeated typing when held down un US International keyboard
 #MaxHotkeysPerInterval 500
+
+SetCapsLockState, Off
+SetCapsLockState, AlwaysOff
 
 
 
@@ -88,6 +93,9 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
     lastCharacterTypedWithAltgr := 0
     return
 
+*Capslock::isCapslockPressed := 1
+*Capslock Up::isCapslockPressed := 0
+
 
 
 ; Monitoring of all AltGr combinations (for lower case letters)
@@ -95,7 +103,8 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 
 #If (isLeftShiftPressed = 0 and isRightShiftPressed = 0
     and isLeftCtrlPressed = 0 and isRightCtrlPressed = 0
-    and isLeftAltPressed = 0 and isRightAltPressed = 1)
+    and isLeftAltPressed = 0 and isRightAltPressed = 1
+    and isCapslockPressed = 0)
 
 ; *SC01::SendInput {U+0000} ; Esc->
 ; *SC3b::SendInput {U+0000} ; F1->
@@ -186,7 +195,8 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 
 #If ((isLeftShiftPressed = 1 or isRightShiftPressed = 1)
     and isLeftCtrlPressed = 0 and isRightCtrlPressed = 0
-    and isLeftAltPressed = 0 and isRightAltPressed = 1)
+    and isLeftAltPressed = 0 and isRightAltPressed = 1
+    and isCapslockPressed = 0)
 
 ; *SC01::SendInput {U+0000} ; Esc->
 ; *SC3b::SendInput {U+0000} ; F1->
@@ -260,6 +270,222 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 *SC35::TypeNextCharacter(["¿"]) ; ?->¿{U+00BF} 
 
 ; *SC39::SendInput {U+0000} ; Space->
+; *SC37::SendInput {U+0000} ; PrtSc->
+; *SC49::SendInput {U+0000} ; PgUp->
+; *SC51::SendInput {U+0000} ; PgDn->
+; *SC48::SendInput {U+0000} ; Up->
+; *SC4b::SendInput {U+0000} ; Left->
+; *SC50::SendInput {U+0000} ; Down->
+; *SC4d::SendInput {U+0000} ; Right->
+#If
+
+
+
+; Monitoring of Capslock custom scripts
+; =====================================
+
+#If (isLeftShiftPressed = 0 and isRightShiftPressed = 0
+    and isLeftCtrlPressed = 0 and isRightCtrlPressed = 0
+    and isLeftAltPressed = 0 and isRightAltPressed = 0
+    and isCapslockPressed = 1)
+
+; *SC01::Reload ; Esc->Reload script
+; *SC3b::SendInput {U+0000} ; F1->
+; *SC3c::SendInput {U+0000} ; F2->
+; *SC3d::SendInput {U+0000} ; F3->
+; *SC3e::SendInput {U+0000} ; F4->
+; *SC3f::SendInput {U+0000} ; F5->
+; *SC40::SendInput {U+0000} ; F6->
+; *SC41::SendInput {U+0000} ; F7->
+; *SC42::SendInput {U+0000} ; F8->
+; *SC43::SendInput {U+0000} ; F9->
+; *SC44::SendInput {U+0000} ; F10->
+; *SC57::SendInput {U+0000} ; F11->
+; *SC58::SendInput {U+0000} ; F12->
+; *SC47::SendInput {U+0000} ; Home->
+; *SC4f::SendInput {U+0000} ; End->
+; *SC53::SendInput !{F4} ; Delete->
+
+
+; *SC29::SendInput {U+0000} ; `->
+; *SC02::SendInput {U+0000} ; 1->
+; *SC03::SendInput {U+0000} ; 2->
+; *SC04::SendInput {U+0000} ; 3->
+; *SC05::SendInput {U+0000} ; 4->
+*SC06:: ; 5->
+    formatedDateWithDay := ""
+    dateFromClipboard := clipboard
+    if (StrLen(dateFromClipboard) > 5)
+    {
+        StringReplace,dateFromClipboard,dateFromClipboard,-,,1
+        FormatTime, formatedDateWithDay, %dateFromClipboard%, d.M.yyyy, ddd
+    }
+    if (StrLen(formatedDateWithDay) < 1)
+    {
+        FormatTime, formatedDateWithDay, A_Now, d.M.yyyy, ddd
+    }
+    formatedDateWithDay := StrReplace(formatedDateWithDay, "Mon", "Pondelok")
+    formatedDateWithDay := StrReplace(formatedDateWithDay, "Tue", "Utorok")
+    formatedDateWithDay := StrReplace(formatedDateWithDay, "Wed", "Streda")
+    formatedDateWithDay := StrReplace(formatedDateWithDay, "Thu", "Štvrtok")
+    formatedDateWithDay := StrReplace(formatedDateWithDay, "Fri", "Piatok")
+    formatedDateWithDay := StrReplace(formatedDateWithDay, "Sat", "Sobota")
+    formatedDateWithDay := StrReplace(formatedDateWithDay, "Sun", "Nedeľa")
+    SendInput %formatedDateWithDay%
+    return
+; *SC07::SendInput {U+0000} ; 6->
+; *SC08::SendInput {U+0000} ; 7->
+; *SC09::SendInput {U+0000} ; 8->
+; *SC0a::SendInput {U+0000} ; 9->
+; *SC0b::SendInput {U+0000} ; 0->
+; *SC0b::SendInput {U+0000} ; -->
+; *SC0b::SendInput {U+0000} ; =->
+; *SC0e::SendInput {U+0000} ; Backspace->
+
+
+; *SC0f:: ; Tab->
+	; SendInput {TAB}{TAB}{TAB}{TAB}{TAB}{TAB}
+	; SendInput {TAB}{TAB}{TAB}{TAB}{TAB}{TAB}
+	; SendInput {TAB}{TAB}{TAB}{TAB}{TAB}{TAB}
+	; return
+*SC10::SendInput ^+i ; q->ctrl+shift+i (open dev tools)
+; *SC11:: ; w->RButton
+    ; if (bRightMouseIsDown = 0)
+    ; {
+        ; bRightMouseIsDown := 1
+        ; SendInput {RButton Down}
+    ; }
+    ; return
+; *SC11 Up::
+    ; if (bRightMouseIsDown = 1)
+    ; {
+        ; bRightMouseIsDown := 0
+        ; SendInput {RButton Up}
+    ; }
+    ; return
+; *SC12:: ; e->MButton
+    ; if (bMiddleMouseIsDown = 0)
+    ; {
+        ; bMiddleMouseIsDown := 1
+        ; SendInput {MButton Down}
+    ; }
+    ; return
+; *SC12 Up::
+    ; if (bMiddleMouseIsDown = 1)
+    ; {
+        ; bMiddleMouseIsDown := 0
+        ; SendInput {MButton Up}
+    ; }
+    ; return
+; *SC13:: ; r->LButton
+    ; if (bLeftMouseIsDown = 0)
+    ; {
+        ; bLeftMouseIsDown := 1
+        ; SendInput {LButton Down}
+    ; }
+    ; return
+; *SC13 Up:: ; r->LButton
+    ; if (bLeftMouseIsDown = 1)
+    ; {
+        ; bLeftMouseIsDown := 0
+        ; SendInput {LButton Up}
+    ; }
+    ; return
+*SC14:: ; t->Insert date with weekday (uses date in clipboard, otherwise uses current day)
+    isoDateWithDay := ""
+    dateFromClipboard := clipboard
+    if (StrLen(dateFromClipboard) > 5)
+    {
+        StringReplace,dateFromClipboard,dateFromClipboard,-,,1
+        FormatTime, isoDateWithDay, %dateFromClipboard%, (yyyy-MM-dd, ddd)
+    }
+    if (StrLen(isoDateWithDay) < 1)
+    {
+        FormatTime, isoDateWithDay, A_Now, (yyyy-MM-dd, ddd)
+    }
+    SendInput %isoDateWithDay%
+    return
+*SC15:: ; y->Insert date
+    FormatTime, isoDate, A_Now, yyyy-MM-dd
+    SendInput %isoDate%
+    return
+    
+*SC16::SendInput {Home} ; u->Home
+*SC17::SendInput {Backspace} ; i->Backspace
+*SC18::SendInput {Delete} ; o->Delete
+*SC19::SendInput {End} ; p->End
+; *SC1a::SendInput !{F4}  ; [-> Alt+F4  ;RAlt doesn't work
+*SC1b::SendInput {U+000d} ; ]->CR
+
+
+; *SC3a::SendInput {U+0000} ; Capslock->
+; *SC1e::SendInput {Enter} ; a->Enter
+*SC1f::SendInput ^z ; s->CTRL+Z
+*SC20::SendInput ^y ; d->CTRL+Y
+*SC21::SendInput {Enter} ; f->Enter
+*SC22::SendInput {ESC} ; g->ESC
+; *SC23::SendInput ^!{TAB} ; h->CTRL-ALT-TAB
+;*SC23:: ; h->Select word
+;    SendInput {RCtrl Down}{Left}{RShift Down}{Right}{RCtrl Up}{RShift Up}
+;    if (bFakeRShiftDown > 0)
+;    {
+;        SendInput {RShift Down}
+;    }
+;    if (bRCtrlDown = 1 or bFakeRCtrlDown > 0)
+;    {
+;        SendInput {RCtrl Down}
+;    }
+;    return
+*SC24::SendInput {Left} ; j->Left
+*SC25::SendInput {Down} ; k->Down
+*SC26::SendInput {Up} ; l->Up
+*SC27::SendInput {Right} ;->Right
+; *SC28::Run C:\Programs\hotkeyboard\img\new_keyboard.jpg ; '->
+*SC2b::SendInput {U+000a} ; \->LF
+*SC1c::SendInput {U+000d}{U+000a} ; Enter->CR+LF
+    
+
+; *SC56::SendInput {U+0000} ; \->\
+; *SC2c::SendInput {U+0000} ; z->
+; *SC2d::SendInput ^x ; x->CTRL+X
+; *SC2e::SendInput ^c ; c->CTRL+C
+; *SC2f::SendInput ^v ; v->CTRL+V
+; *SC30::SendInput ^+v ; b->CTRL+SHIFT+V
+; *SC31:: ; n->Alt+Shift+Esc (window select + cursor focus)
+	; SendInput !+{Esc}
+	; Sleep, 50
+    ; MouseMove,(A_CaretX),(A_CaretY+5)
+    ; if (A_CaretX = "")
+    ; {
+        ; WinGetPos, posX, posY, posWidth, posHeight, A
+        ; MouseMove,(0+posWidth/2),(0+posHeight/2)
+    ; }
+    ; return
+; *SC32:: ; m->Alt+Esc (window select + cursor focus)
+	; SendInput !{Esc}
+	; Sleep, 50
+    ; MouseMove,(A_CaretX),(A_CaretY+5)
+    ; if (A_CaretX = "")
+    ; {
+        ; WinGetPos, posX, posY, posWidth, posHeight, A
+        ; MouseMove,(0+posWidth/2),(0+posHeight/2)
+    ; }
+    ; return
+*SC33::SendInput ^{PgUp} ; ,->Ctrl+PgUp
+*SC34::SendInput ^{PgDn} ; .->Ctrl+PgDn
+; *SC35::SendInput {U+0000} ; /
+
+
+;Fn doesn't have any scancode
+; *SC39:: ; Space->Place mouse on cursor
+	SendInput {U+0020} ; Space->Space (ASCII code)
+    ; MouseMove,(A_CaretX),(A_CaretY+5)
+    ; if (A_CaretX = "")
+    ; {
+        ; WinGetPos, posX, posY, posWidth, posHeight, A
+        ; MouseMove,(0+posWidth/2),(0+posHeight/2)
+    ; }
+    ; return
 ; *SC37::SendInput {U+0000} ; PrtSc->
 ; *SC49::SendInput {U+0000} ; PgUp->
 ; *SC51::SendInput {U+0000} ; PgDn->
