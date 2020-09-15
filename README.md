@@ -1,7 +1,7 @@
 ﻿# HotKeyboard
 A simple 
-[Autohotkey script](https://github.com/mattludma/hotkeyboard/raw/master/release/hotkeyboard.zip)
-that adds nifty multilingual support to your keyboard using AltGr (right Alt) key
+[AutoHotkey script](https://github.com/mattludma/hotkeyboard/raw/master/release/hotkeyboard.zip)
+that adds nifty multilingual support to your keyboard using right Alt key (a.k.a. `AltGr`)
 
 ## What is it for
 
@@ -11,16 +11,17 @@ that adds nifty multilingual support to your keyboard using AltGr (right Alt) ke
 HotKeyboard is a script that will add all the missing characters to your
 main keyboard layout, so you won't have to bother with switching layouts
 ever again. You can access these extra characters by holding `AltGr`
-(right Alt) key and then pressing the base key of the character.
+(right Alt) key and then pressing the base key of a character.
 
 **Some examples:**
 
 | Keys combination     | Outcome  | Languages character occurs in |
 |----------------------|----------|-------------------------------|
-| `AlrGr + a`          | á        | Czech, Slovak                 |
-| `AlrGr + Shift + a`  | Á        | Czech, Slovak                 |
-| `AlrGr + e`          | é        | Czech, Slovak, French         |
+| `AlrGr + a`          | á        | Czech, Slovak , ...           |
+| `AlrGr + Shift + a`  | Á        | Czech, Slovak, ...            |
+| `AlrGr + e`          | é        | Czech, Slovak, French, ...    |
 | `AlrGr + e + e`      | ě        | Czech                         |
+| `AlrGr + s`          | š        | Czech, Slovak, ...            |
 | `AlrGr + s + s`      | ß        | German                        |
 | `AltGr + ?`          | ¿        | Spanish                       |
         
