@@ -5,14 +5,18 @@
 ; For more info visit https://github.com/mattludma/hotkeyboard
 
 
-
 ; Variables initialization (it has to be done before keys monitoring)
 ; ===================================================================
 
 global lastCharacterTypedWithAltgr := ""
 
+global iTimeDiff := 0
+global iLastLAltDownTime := A_Now . A_MSec
+global iCurrnetAltDownTime := A_Now . A_MSec
+
 isLeftShiftPressed := 0
 isRightShiftPressed := 0
+isFakeShiftPressed := 0
 
 isLeftCtrlPressed := 0
 isRightCtrlPressed := 0
@@ -21,13 +25,14 @@ isLeftAltPressed := 0
 isRightAltPressed := 0
 
 isCapslockPressed := 0
-
-; workaround to prevent repeated typing when held down un US International keyboard
-#MaxHotkeysPerInterval 500
-
 SetCapsLockState, Off
 SetCapsLockState, AlwaysOff
 
+; remap context menu key to ctrl
+*AppsKey::Ctrl 
+
+; workaround to prevent repeated typing when held down un US International keyboard
+#MaxHotkeysPerInterval 500
 
 
 ; User-defined functions
@@ -60,7 +65,7 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
         ; character from the same sequence gets replaced by a next character
         indexOfNextChar := Mod(indexOfLastChar, listOfSpecialChars.Length()) + 1
         lastCharacterTypedWithAltgr := listOfSpecialChars[indexOfNextChar]
-        Send {Left}{Delete} ; works better than backspace
+        Send {Backspace}
         Send %lastCharacterTypedWithAltgr% 
     }
 }
@@ -82,9 +87,6 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 *~RCtrl::isRightCtrlPressed := 1
 *~RCtrl Up::isRightCtrlPressed := 0
 
-*~LAlt::isLeftAltPressed := 1
-*~LAlt Up::isLeftAltPressed := 0
-
 ; Monitoring without the "~" modifier means that all monitored key presses will be
 ; intercepted to prevent focus loss or some other unwanted alt functionality
 *RAlt::isRightAltPressed := 1
@@ -96,12 +98,45 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 *Capslock::isCapslockPressed := 1
 *Capslock Up::isCapslockPressed := 0
 
+*XButton1::SendInput {Left}
+*XButton2::SendInput {Space}
 
+; *~LAlt::isLeftAltPressed := 1
+; *~LAlt Up::isLeftAltPressed := 0
+
+; LAlt is remaped to RShift, doble click will still invote LAlt though
+*LAlt::
+	iCurrnetAltDownTime := A_Now . A_MSec
+	iTimeDiff := (iCurrnetAltDownTime - iLastLAltDownTime) + 0
+	iLastLAltDownTime := A_Now . A_MSec
+	if (iTimeDiff < 300 )
+	{
+		isLeftAltPressed := 1
+		SendInput {LAlt Down}
+	}
+	else
+	{
+		isFakeShiftPressed := 1
+		SendInput {RShift Down}
+	}
+    return
+*LAlt Up::
+    if (isLeftAltPressed = 1)
+    {
+        isLeftAltPressed := 0
+        SendInput {LAlt Up}
+    }
+    else
+    {
+        isFakeShiftPressed := 0
+        SendInput {RShift Up}
+    }
+    return
 
 ; Monitoring of all AltGr combinations (for lower case letters)
 ; =============================================================
 
-#If (isLeftShiftPressed = 0 and isRightShiftPressed = 0
+#If (isLeftShiftPressed = 0 and isRightShiftPressed = 0 and isFakeShiftPressed = 0
     and isLeftCtrlPressed = 0 and isRightCtrlPressed = 0
     and isLeftAltPressed = 0 and isRightAltPressed = 1
     and isCapslockPressed = 0)
@@ -175,7 +210,7 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 *SC31::TypeNextCharacter(["ň","ń","ñ"]) ; n->ň {U+0148},ń,ñ{U+00F1}
 ; *SC32::SendInput {U+0000} ; m->
 ; *SC33::SendInput {U+0000} ; ,->
-; *SC34::SendInput {U+0000} ; .->
+*SC34::TypeNextCharacter(["…"]) ; .->…
 ; *SC35::SendInput {U+0000} ; /->
 
 *SC39::SendInput {U+00a0} ; Space->Non-breaking space
@@ -193,7 +228,7 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 ; Monitoring of all AltGr + Shift combinations (for upper case letters)
 ; =====================================================================
 
-#If ((isLeftShiftPressed = 1 or isRightShiftPressed = 1)
+#If ((isLeftShiftPressed = 1 or isRightShiftPressed = 1 or isFakeShiftPressed = 1)
     and isLeftCtrlPressed = 0 and isRightCtrlPressed = 0
     and isLeftAltPressed = 0 and isRightAltPressed = 1
     and isCapslockPressed = 0)
@@ -284,7 +319,7 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 ; Monitoring of Capslock custom scripts
 ; =====================================
 
-#If (isLeftShiftPressed = 0 and isRightShiftPressed = 0
+#If (isLeftShiftPressed = 0 and isRightShiftPressed = 0 and isFakeShiftPressed = 0
     and isLeftCtrlPressed = 0 and isRightCtrlPressed = 0
     and isLeftAltPressed = 0 and isRightAltPressed = 0
     and isCapslockPressed = 1)
@@ -447,30 +482,30 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
 
 ; *SC56::SendInput {U+0000} ; \->\
 ; *SC2c::SendInput {U+0000} ; z->
-; *SC2d::SendInput ^x ; x->CTRL+X
-; *SC2e::SendInput ^c ; c->CTRL+C
-; *SC2f::SendInput ^v ; v->CTRL+V
-; *SC30::SendInput ^+v ; b->CTRL+SHIFT+V
-; *SC31:: ; n->Alt+Shift+Esc (window select + cursor focus)
-	; SendInput !+{Esc}
-	; Sleep, 50
-    ; MouseMove,(A_CaretX),(A_CaretY+5)
-    ; if (A_CaretX = "")
-    ; {
-        ; WinGetPos, posX, posY, posWidth, posHeight, A
-        ; MouseMove,(0+posWidth/2),(0+posHeight/2)
-    ; }
-    ; return
-; *SC32:: ; m->Alt+Esc (window select + cursor focus)
-	; SendInput !{Esc}
-	; Sleep, 50
-    ; MouseMove,(A_CaretX),(A_CaretY+5)
-    ; if (A_CaretX = "")
-    ; {
-        ; WinGetPos, posX, posY, posWidth, posHeight, A
-        ; MouseMove,(0+posWidth/2),(0+posHeight/2)
-    ; }
-    ; return
+*SC2d::SendInput ^x ; x->CTRL+X
+*SC2e::SendInput ^c ; c->CTRL+C
+*SC2f::SendInput ^v ; v->CTRL+V
+*SC30::SendInput ^+v ; b->CTRL+SHIFT+V
+*SC31:: ; n->Alt+Esc (window select + cursor focus)
+	SendInput !{Esc}
+	Sleep, 50
+    MouseMove,(A_CaretX),(A_CaretY+5)
+    if (A_CaretX = "")
+    {
+        WinGetPos, posX, posY, posWidth, posHeight, A
+        MouseMove,(0+posWidth/2),(0+posHeight/2)
+    }
+    return
+*SC32:: ; m->Alt+Shift+Esc (window select + cursor focus)
+	SendInput !+{Esc}
+	Sleep, 50
+    MouseMove,(A_CaretX),(A_CaretY+5)
+    if (A_CaretX = "")
+    {
+        WinGetPos, posX, posY, posWidth, posHeight, A
+        MouseMove,(0+posWidth/2),(0+posHeight/2)
+    }
+    return
 *SC33::SendInput ^{PgUp} ; ,->Ctrl+PgUp
 *SC34::SendInput ^{PgDn} ; .->Ctrl+PgDn
 ; *SC35::SendInput {U+0000} ; /

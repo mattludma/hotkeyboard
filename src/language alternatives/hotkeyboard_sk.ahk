@@ -55,7 +55,7 @@ TypeNextCharacter(ByRef listOfSpecialChars) {
         ; character from the same sequence gets replaced by a next character
         indexOfNextChar := Mod(indexOfLastChar, listOfSpecialChars.Length()) + 1
         lastCharacterTypedWithAltgr := listOfSpecialChars[indexOfNextChar]
-        Send {Left}{Delete} ; works better than backspace
+        Send {Backspace}
         Send %lastCharacterTypedWithAltgr% 
     }
 }
